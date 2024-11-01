@@ -1,10 +1,34 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
 
-import './App.css'
+// A wrapper component to protect private routes
+const PrivateRoute = ({ children }) => {
+  const user = JSON.parse(localStorage.getItem('user')); // Use 'user' instead of 'staff'
+  return user && Date.now() < user.expiry ? (
+    children
+  ) : (
+    <Navigate to="/login" replace />
+  );
+};
 
-export default function App() {
+const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;

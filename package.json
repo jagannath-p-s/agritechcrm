@@ -10,8 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^1.11.0",
+    "@supabase/supabase-js": "^2.46.1",
+    "bcryptjs": "^2.4.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
+    "supabase": "^1.207.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
